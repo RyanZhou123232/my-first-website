@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Ryan's Website</title>
@@ -9,6 +10,7 @@
             font-family: Arial, sans-serif;
             background-color: #0f172a;
             color: white;
+            transition: background-color 0.6s ease;
         }
 
         .container {
@@ -19,12 +21,14 @@
         h1 {
             font-size: 60px;
             color: #38bdf8;
+            transition: transform 0.4s ease, color 0.4s ease;
         }
 
         .subtitle {
             font-size: 20px;
             color: #cbd5f5;
             margin-top: 10px;
+            transition: opacity 0.4s ease;
         }
 
         .button {
@@ -36,6 +40,10 @@
             background-color: #38bdf8;
             color: #0f172a;
             cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #7dd3fc;
         }
 
         .cards {
@@ -50,22 +58,40 @@
             padding: 30px;
             border-radius: 15px;
             width: 200px;
+            transition: transform 0.4s ease, background-color 0.4s ease;
         }
 
         .card h3 {
             color: #38bdf8;
         }
 
+        .active {
+            background-color: #1d4ed8;
+        }
+
+        .active h1 {
+            color: #facc15;
+            transform: scale(1.08);
+        }
+
+        .active .subtitle {
+            opacity: 0.9;
+        }
+
+        .active .card {
+            transform: scale(1.08);
+            background-color: #334155;
+        }
     </style>
 </head>
 
-<body>
+<body id="page">
 
     <div class="container">
-        <h1>Hello Ryan</h1>
-        <p class="subtitle">这是我的第一个真正的网站</p>
+        <h1 id="title">Hello Ryan</h1>
+        <p class="subtitle" id="message">这是我的第一个真正的网站</p>
 
-        <button class="button">Get Started</button>
+        <button class="button" onclick="makeMove()">Make it move</button>
 
         <div class="cards">
             <div class="card">
@@ -84,6 +110,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function makeMove() {
+            const page = document.getElementById("page");
+            const title = document.getElementById("title");
+            const message = document.getElementById("message");
+
+            page.classList.toggle("active");
+
+            if (page.classList.contains("active")) {
+                title.innerText = "Ryan's Interactive Website";
+                message.innerText = "页面刚刚被你激活了。";
+            } else {
+                title.innerText = "Hello Ryan";
+                message.innerText = "这是我的第一个真正的网站";
+            }
+        }
+    </script>
 
 </body>
 </html>
